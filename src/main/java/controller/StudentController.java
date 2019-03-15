@@ -2,48 +2,51 @@ package controller;
 
 import dto.StudentDto;
 import handler.StudentHandler;
-import service.Service;
-import service.SomeOtherService;
 import service.StudentService;
 
-import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
 
 public class StudentController {
-    private Service service;
-    private StudentHandler handler;
+    private StudentService service = new StudentService();
+    private StudentHandler handler = new StudentHandler();
     private Scanner scanner = new Scanner(System.in);
-    private static HashMap<String, Service> map;
-
-    public StudentController() {
-        map.put("student", new StudentService());
-        map.put("command", new SomeOtherService());
-        handler = new StudentHandler();
-    }
 
     public void display() {
-        String command = scanner.nextLine();
-        service = map.get(command);
         while (true) {
+            String command;
+            StudentDto dto;
+            Integer id;
+            System.out.println("Enter command");
             command = scanner.nextLine();
             switch (command){
                 case "create":
-                    service.create(handler.create());
+                    dto = handler.create();
+                    System.out.println(service.create(dto).toString());
                     break;
                 case "get":
-                    StudentDto studentDto = (StudentDto) service.get(handler.get());
-                    System.out.println(studentDto.toString());
+                    id = handler.get();
+                    dto = service.get(id);
+                    System.out.println(dto.toString());
                     break;
                 case "update":
                     System.out.println("Enter id to update");
-                    Integer id = scanner.nextInt();
+                    id = scanner.nextInt();
                     service.update(id, handler.update());
                     break;
                 case "delete":
-                    service.delete(handler.delete());
+                    id = handler.delete();
+                    service.delete(id);
                     break;
                 case "getAll":
+                    List<StudentDto> list =
+                    service.getAll();
+                    for(StudentDto studentDto: list){
+                        System.out.println(studentDto.toString());
+                    }
                     break;
+                case "exit":
+                    System.exit(0);
             }
 
         }

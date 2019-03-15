@@ -1,19 +1,23 @@
 package service;
 
 import dto.StudentDto;
+import entity.Student;
 import mapper.StudentMapper;
 import repository.StudentRepository;
 
+import java.util.ArrayList;
 import java.util.List;
+
 
 public class StudentService implements Service<StudentDto, Integer> {
     private StudentRepository repository = new StudentRepository();
     private StudentMapper mapper = new StudentMapper();
 
     @Override
-    public void create(StudentDto entity) {
+    public StudentDto create(StudentDto entity) {
         Integer key = entity.getId();
         repository.getStorage().put(key, mapper.mapToObject(entity));
+        return entity;
     }
 
     @Override
@@ -33,6 +37,11 @@ public class StudentService implements Service<StudentDto, Integer> {
 
     @Override
     public List<StudentDto> getAll() {
-        return null;
+        List<StudentDto> result = new ArrayList<>();
+        List<Student> list = new ArrayList<>(repository.getStorage().values());
+        for (Student student : list) {
+            result.add(mapper.mapToDto(student));
+        }
+        return result;
     }
 }

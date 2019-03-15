@@ -2,14 +2,13 @@ package entity;
 
 import org.jetbrains.annotations.Contract;
 
-import java.util.Date;
 import java.util.Objects;
 
 public class Student extends Entity<Integer> {
 
     private String firstName;
     private String lastName;
-    private Faculty faculty;
+    private String faculty;
 
     @Override
     public Student setId(Integer id) {
@@ -38,11 +37,11 @@ public class Student extends Entity<Integer> {
         return this;
     }
 
-    public Faculty getFaculty() {
+    public String getFaculty() {
         return faculty;
     }
 
-    public Student setFaculty(Faculty faculty) {
+    public Student setFaculty(String faculty) {
         this.faculty = faculty;
         return this;
     }

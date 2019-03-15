@@ -4,8 +4,8 @@ import java.util.List;
 
 public class SomeOtherService implements Service<Object,Integer> {
     @Override
-    public void create(Object entity) {
-
+    public Object create(Object entity) {
+        return null;
     }
 
     @Override

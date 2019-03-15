@@ -1,15 +1,12 @@
 package dto;
 
-import entity.Faculty;
-
-import java.util.Date;
 import java.util.Objects;
 
 public final class StudentDto {
     private Integer id;
     private String firstName;
     private String lastName;
-    private Faculty faculty;
+    private String faculty;
 
     public Integer getId() {
         return id;
@@ -38,11 +35,11 @@ public final class StudentDto {
         return this;
     }
 
-    public Faculty getFaculty() {
+    public String getFaculty() {
         return faculty;
     }
 
-    public StudentDto setFaculty(Faculty faculty) {
+    public StudentDto setFaculty(String faculty) {
         this.faculty = faculty;
         return this;
     }

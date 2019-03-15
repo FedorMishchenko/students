@@ -10,8 +10,7 @@ public class StudentMapper implements Mapper<StudentDto, Student> {
                 .setId(dao.getId())
                 .setFirstName(dao.getFirstName())
                 .setLastName(dao.getLastName())
-                .setFaculty(dao.getFaculty())
-                .setBirthday(dao.getBirthday());
+                .setFaculty(dao.getFaculty());
     }
 
     @Override
@@ -20,7 +19,6 @@ public class StudentMapper implements Mapper<StudentDto, Student> {
                 .setId(origin.getId())
                 .setFirstName(origin.getFirstName())
                 .setLastName(origin.getLastName())
-                .setBirthday(origin.getBirthday())
                 .setFaculty(origin.getFaculty());
     }
 }
