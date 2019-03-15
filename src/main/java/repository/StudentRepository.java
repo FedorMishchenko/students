@@ -9,7 +9,7 @@ public class StudentRepository {
     public StudentRepository(){
         this.map = new HashMap<>();
     }
-    public HashMap<Integer,Student> getStorage(){
+    public HashMap<Integer,Student> store(){
         return this.map;
     }
 }

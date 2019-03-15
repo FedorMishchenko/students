@@ -6,11 +6,13 @@ import dto.StudentDto;
 import java.util.Scanner;
 
 public class StudentHandler implements Handler<StudentDto, Integer> {
-private Scanner scanner = new Scanner(System.in);
+
+    private Scanner scanner = new Scanner(System.in);
+
     @Override
     public StudentDto create() {
         System.out.println("Enter id");
-        Integer id = scanner.nextInt();
+        Integer id = Integer.parseInt(scanner.nextLine());
         System.out.println("Enter first name");
         String firstName = scanner.nextLine();
         System.out.println("Enter last name");

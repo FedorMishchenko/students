@@ -1,17 +1,25 @@
 package controller;
 
 import dto.StudentDto;
+import handler.Handler;
 import handler.StudentHandler;
+import service.Service;
 import service.StudentService;
 
 import java.util.List;
 import java.util.Scanner;
 
-public class StudentController {
-    private StudentService service = new StudentService();
-    private StudentHandler handler = new StudentHandler();
+public class StudentController implements Controller{
     private Scanner scanner = new Scanner(System.in);
+    private Service service;
+    private Handler handler;
 
+    public StudentController(){
+        service = new StudentService();
+        handler = new StudentHandler();
+    }
+
+    @Override
     public void display() {
         while (true) {
             String command;
@@ -21,12 +29,12 @@ public class StudentController {
             command = scanner.nextLine();
             switch (command){
                 case "create":
-                    dto = handler.create();
+                    dto = (StudentDto) handler.create();
                     System.out.println(service.create(dto).toString());
                     break;
                 case "get":
-                    id = handler.get();
-                    dto = service.get(id);
+                    id = (Integer) handler.get();
+                    dto = (StudentDto) service.get(id);
                     System.out.println(dto.toString());
                     break;
                 case "update":
@@ -35,10 +43,10 @@ public class StudentController {
                     service.update(id, handler.update());
                     break;
                 case "delete":
-                    id = handler.delete();
+                    id = (Integer) handler.delete();
                     service.delete(id);
                     break;
-                case "getAll":
+                case "all":
                     List<StudentDto> list =
                     service.getAll();
                     for(StudentDto studentDto: list){

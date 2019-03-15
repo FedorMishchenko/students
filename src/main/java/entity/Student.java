@@ -5,7 +5,6 @@ import org.jetbrains.annotations.Contract;
 import java.util.Objects;
 
 public class Student extends Entity<Integer> {
-
     private String firstName;
     private String lastName;
     private String faculty;

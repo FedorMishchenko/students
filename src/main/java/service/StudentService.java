@@ -16,29 +16,29 @@ public class StudentService implements Service<StudentDto, Integer> {
     @Override
     public StudentDto create(StudentDto entity) {
         Integer key = entity.getId();
-        repository.getStorage().put(key, mapper.mapToObject(entity));
+        repository.store().put(key, mapper.mapToObject(entity));
         return entity;
     }
 
     @Override
     public StudentDto get(Integer id) {
-        return mapper.mapToDto(repository.getStorage().get(id));
+        return mapper.mapToDto(repository.store().get(id));
     }
 
     @Override
     public void update(Integer id, StudentDto entity) {
-        repository.getStorage().replace(id, mapper.mapToObject(entity));
+        repository.store().replace(id, mapper.mapToObject(entity));
     }
 
     @Override
     public void delete(Integer id) {
-        repository.getStorage().remove(id);
+        repository.store().remove(id);
     }
 
     @Override
     public List<StudentDto> getAll() {
         List<StudentDto> result = new ArrayList<>();
-        List<Student> list = new ArrayList<>(repository.getStorage().values());
+        List<Student> list = new ArrayList<>(repository.store().values());
         for (Student student : list) {
             result.add(mapper.mapToDto(student));
         }
